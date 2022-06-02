@@ -1,0 +1,208 @@
+---
+title: "R script for quality tradeoff explanations"
+author: "Rebekka Wohlrab"
+date: "05/31/2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r Init, include=FALSE}
+require(FactoMineR)
+library(ggfortify)
+library(dplyr)
+library(ggforce)
+library(ggrepel)
+library(factoextra)
+library(caret)
+library(dplyr)
+library(tidyr)
+library(data.table) # for function %like%
+library(janitor) # for remove_constant
+library(GGally)
+library(ggcorrplot)
+library(rpart)
+library(rpart.plot)
+library(clustrd)
+source('scripts/clu_means.r')
+source('scripts/outOfIndependence.r')
+source('scripts/plot.cluspca.r')
+source('scripts/plot.cluspcamix.r')
+source('scripts/helper.r')
+```
+
+```{r ReadFromFiles, echo=FALSE}
+privacy_properties <- list.files("./example_data", pattern = "^privacy", full.names = TRUE)
+data.privacy <- lapply(privacy_properties, read.csv, sep = ",", header = TRUE, fill = TRUE, row.names = NULL)
+
+safety_properties <- list.files("./example_data", pattern = "^safety", full.names = TRUE)
+data.safety <- lapply(safety_properties, read.csv, header = TRUE, stringsAsFactors = FALSE, row.names = NULL)
+
+data <- list.files("./example_data", pattern = "^sample_data", full.names = TRUE)
+data.raw <- lapply(data, read.csv, sep = ",", header = TRUE, fill = TRUE, row.names = NULL)
+data.frames <- list()
+data.cat.frames <- list()
+```
+
+```{r CreateFrames, echo=FALSE}
+cat_frame <- data.raw[[1]][,-grep("^cost_", colnames(data.raw[[1]]))]
+cat_frame <- cat_frame[,-grep("^Number", colnames(cat_frame))]
+frame <- data.raw[[1]][,-grep("^cost_", colnames(data.raw[[1]]))]
+frame <- frame[,-grep("^Number", colnames(frame))]
+frame <- frame %>% select(-"Total.Cost")
+cat_frame <- cat_frame %>% select(-"Total.Cost")
+colnames(cat_frame) <- gsub("w_cost_", "w_", colnames(cat_frame))
+colnames(frame) <- gsub("w_cost_", "w_", colnames(frame))
+edge_frame <- data.safety[[1]] %>% unite("Edge", NodeID:Target, remove = FALSE)
+edge_frame <- edge_frame[!duplicated(edge_frame), ]
+frame[frame=="setSpeed(0.7)"] <- 0
+frame[frame=="setSpeed(0.35)"] <- 0
+colnames(frame) <- gsub("rLoc.", "", colnames(frame))
+colnames(frame) <- gsub(".rSpeed.07", "_fast", colnames(frame))
+colnames(frame) <- gsub(".rSpeed.035", "_dist", colnames(frame))
+colnames(cat_frame) <- gsub("rLoc.", "", colnames(cat_frame))
+colnames(cat_frame) <- gsub(".rSpeed.035", "", colnames(cat_frame))
+
+stateColumns <- frame[,grep("^L", colnames(frame))]
+stateColumns_gathered <- pivot_longer(stateColumns, cols = starts_with('L'))
+stateColumns_gathered <- as.data.frame(lapply(stateColumns_gathered, function(y) gsub("moveTo", "", y)))
+stateColumns_gathered <- as.data.frame(lapply(stateColumns_gathered, function(y) gsub("\\(", "", y)))
+stateColumns_gathered <- as.data.frame(lapply(stateColumns_gathered, function(y) gsub("\\)", "", y)))
+stateColumns_gathered$origin <- substr(stateColumns_gathered$name,1,nchar(stateColumns_gathered$name)-5)
+stateColumns_edges <- left_join(stateColumns_gathered, edge_frame, by = c("origin" = "NodeID", "value" = "Target"))
+stateDistance <- stateColumns_edges[,c("name", "Distance")]
+stateDistance <- pivot_wider(stateDistance, names_from = "name", values_from = "Distance", values_fn = list)
+stateDistance <- apply(stateDistance,2, unlist)
+frame[,endsWith(colnames(frame), "_fast")] <- stateDistance[,endsWith(colnames(stateDistance), "_fast")] * 0.7
+frame[,endsWith(colnames(frame), "_dist")] <- stateDistance[,endsWith(colnames(stateDistance), "_dist")] * 0.35
+frame$SumTravelTime <- rowSums(frame[,grep("^L", colnames(frame))], na.rm = TRUE)
+
+# calculating the sum of occlusions traversed by the current policy
+edgeOccluded <- stateColumns_edges[,c("name", "Occlusion")]
+edgeOccluded <- pivot_wider(edgeOccluded, names_from = "name", values_from = "Occlusion", values_fn = list)
+edgeOccluded <- apply(edgeOccluded,2, unlist)
+edgeOccluded[edgeOccluded=="CLEAR"] <- 0
+edgeOccluded[edgeOccluded=="PARTIALLY_OCCLUDED"] <- 1
+edgeOccluded[edgeOccluded=="OCCLUDED"] <- 2
+edgeOccluded <- as.data.frame(edgeOccluded)
+edgeOccluded <- mutate_all(edgeOccluded, function(x) as.numeric(x))
+frame$SumCollisions <- rowSums(edgeOccluded, na.rm = TRUE)
+
+# intrusiveness  
+node_frame <- as.data.frame(t(data.privacy[[1]]))
+node_frame[node_frame=="PUBLIC"] <- 0
+node_frame[node_frame=="SEMI_PRIVATE"] <- 1
+node_frame[node_frame=="PRIVATE"] <- 2
+intrusiveNodes <- t(node_frame)
+node_frame <- node_frame[!duplicated(as.list(node_frame))]
+colnames(node_frame) <- paste("Intrusiveness", node_frame[1,], sep = "_")
+rownames(node_frame) <- c()
+node_frame[1, ] <- node_frame[2,]
+node_frame.df <- data.frame(matrix(NA, ncol = ncol(node_frame), nrow = nrow(frame)))
+colnames(node_frame.df) <- colnames(node_frame)
+node_frame.df[1,] <- node_frame[1,]
+node_frame.df <- node_frame.df %>% fill(c(1:ncol(node_frame.df)), .direction = "downup")
+
+# calculating the sum of intrusive locations traversed by the current policy
+node_frame_long <- as.data.frame(intrusiveNodes)
+colnames(node_frame_long) <- c("name", "Privacy")
+nodeIntrusive <- left_join(stateColumns_gathered, node_frame_long, by = c("value" = "name"))
+nodeIntrusive <- nodeIntrusive[,c("name", "Privacy")]
+nodeIntrusive <- pivot_wider(nodeIntrusive, names_from = "name", values_from = "Privacy", values_fn = list)
+nodeIntrusive <- apply(nodeIntrusive,2, unlist)
+nodeIntrusive <- as.data.frame(nodeIntrusive)
+nodeIntrusive <- mutate_all(nodeIntrusive, function(x) as.numeric(x))
+frame$SumIntrusiveness <- rowSums(nodeIntrusive, na.rm = TRUE)
+
+frame <- mutate_all(frame, function(x) as.numeric(x))
+cat_frame$SumTravelTime <- frame$SumTravelTime
+cat_frame$SumIntrusiveness <- frame$SumIntrusiveness
+cat_frame$SumCollisions <- frame$SumCollisions
+
+numvars <- which(sapply(cat_frame, is.numeric))
+weightvars <- which(colnames(cat_frame) %like% "w_")
+cat_frame[,-numvars] <- mutate_all(cat_frame[,-numvars], function(x) as.factor(x))
+
+```
+
+PCA
+```{r PCA, echo = FALSE, fig.dim = c(10,8)}
+dat <- frame
+dat[is.na(dat)] <- 0
+dat <- remove_constant(dat, na.rm = TRUE, quiet = TRUE)
+pca <- prcomp(dat, center = TRUE, scale = TRUE)
+all_correlationloadings <- cor(dat, pca$x)
+correlationloadings <- all_correlationloadings[abs(all_correlationloadings[,1])>0 & abs(all_correlationloadings[,2]) > 0,]
+options(ggrepel.max.overlaps = Inf)
+p1<-ggplot(correlationloadings,aes(x=PC1,y=PC2, label=row.names(correlationloadings) )) +
+  geom_ellipse(aes(x0 = 0, y0 = 0, a = 1, b = 1, angle = 0)) +
+  geom_ellipse(aes(x0 = 0, y0 = 0, a = 0.70710678118655, b = 0.70710678118655, angle = 0)) +
+  labs(x = paste("PC1 ",round(get_eigenvalue(pca)$variance.percent[1],digits = 2), "%"), y = paste("PC2 ",round(get_eigenvalue(pca)$variance.percent[2], digits=2), "%"))
+p1<-p1+geom_point()+scale_colour_Publication()+ theme_Publication()+
+  geom_text_repel(aes(x = PC1, 
+                      y = PC2, 
+                      label = row.names(correlationloadings) ))
+p1
+ggsave("plots/PCA_plot_robot.pdf", width=11, height=6)
+```
+
+
+MCA
+```{r MCA, echo = FALSE, fig.height = 10}
+options(ggrepel.max.overlaps = Inf)
+numvars <- which(sapply(cat_frame, is.numeric))
+
+frame.mca <- MCA(cat_frame, quanti.sup = numvars)
+fviz_mca_biplot(frame.mca, repel = TRUE,  geom = c("point", "text"),     pointsize = 2.5, 
+                label = c("var", "quanti.sup"), labelsize = 5, alpha.ind = 1)+scale_colour_Publication()+ theme_Publication()
+ggsave("plots/MCA_robot.pdf", width=17, height=9)
+```
+
+```{r clustering, echo = FALSE}
+bestclusMCA = tuneclus(dat, 2:5, 1:4, criterion = "asw", dst = "low", nstart = 10, seed = 1234)
+nDim <- max(bestclusMCA$ndimbest, 2)
+nClus <- bestclusMCA$nclusbest
+cluster_names <- c(paste("C",1:nClus,sep=""))
+dimensions = c(round(get_eigenvalue(pca)$variance.percent[1], digits=2), round(get_eigenvalue(pca)$variance.percent[2], digits=2))
+# out.cluspcamix = cluspcamix(cat_frame, nClus, nDim, seed = 3423, method = "mixedRKM", nstart = 10, center = TRUE, scale = TRUE, rotation = "varimax")
+# pdf(file = "plots/clustering_cluspcamix_means.pdf", width = 17, height = 8)
+# par(mfrow = c(2,1))
+# plot.cluspcamix(out.cluspcamix, cludesc = TRUE, topstdres = 10, cluster_names = cluster_names, dimensions = dimensions)
+# dev.off()
+
+
+out.cluspca = cluspca(dat, nClus, nDim, center = TRUE, scale = TRUE)
+pdf(file = "plots/clustering_cluspca_means.pdf", width = 17, height = 8)
+par(mfrow = c(1,2))
+plot.cluspca(out.cluspca, cludesc = TRUE, cluster_names = cluster_names, dimensions = c(round(get_eigenvalue(pca)$variance.percent[1], digits=2), round(get_eigenvalue(pca)$variance.percent[2], digits=2)))
+dev.off()
+
+out.cluspca = cluspca(cat_frame[,numvars], nClus, nDim, center = TRUE, scale = TRUE)
+pdf(file = "plots/quality_attribute_means.pdf", width = 17, height = 8)
+par(mfrow = c(1,2))
+plot.cluspca(out.cluspca, cludesc = TRUE, cluster_names = cluster_names, dimensions = c(round(get_eigenvalue(pca)$variance.percent[1], digits=2), round(get_eigenvalue(pca)$variance.percent[2], digits=2)))
+dev.off()
+
+superframe <- cat_frame[,-numvars]
+out.clusmca = clusmca(superframe, nClus, nDim)
+pdf(file = "plots/mca_standard_residuals.pdf", width = 17, height = 8)
+par(mfrow = c(2,1))
+plot(out.clusmca, cludesc= TRUE)
+dev.off()
+```
+
+
+```{r decision tree, fig.width=16, echo = FALSE}
+selectedVar <- which(colnames(cat_frame) == "L11")
+
+model1 <- rpart(
+  L11 ~ .,
+  data = cat_frame[,c(weightvars,selectedVar)],
+  control = rpart.control(minsplit = 2))
+pdf(file = "plots/decision_tree_robot.pdf", width = 12, height = 7)
+rpart.plot(model1, type = 1, fallen.leaves= TRUE, tweak = 1.1)
+dev.off()
+```
