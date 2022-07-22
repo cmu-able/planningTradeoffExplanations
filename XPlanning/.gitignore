@@ -1,0 +1,8 @@
+/bin/
+/.DS_Store
+/target/
+/test-output/
+/tmpdata/
+.classpath
+XPlanning.iml
+.idea/**

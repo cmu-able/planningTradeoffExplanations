@@ -1,0 +1,1056 @@
+{
+  "obstacles": [
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L55",
+      "from-id": "L51"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L52",
+      "from-id": "L51"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L23",
+      "from-id": "L20"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L18",
+      "from-id": "L17"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L12",
+      "from-id": "L10"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L32",
+      "from-id": "L31"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L17",
+      "from-id": "L16"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "LX2",
+      "from-id": "L8"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L20",
+      "from-id": "L15"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L62",
+      "from-id": "L32"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L21",
+      "from-id": "L17"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L54",
+      "from-id": "L52"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L44",
+      "from-id": "L43"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L40",
+      "from-id": "L39"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L43",
+      "from-id": "L41"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L57",
+      "from-id": "L53"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L52",
+      "from-id": "L47"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L64",
+      "from-id": "L63"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L11",
+      "from-id": "L8"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L63",
+      "from-id": "L61"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L12",
+      "from-id": "L11"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L10",
+      "from-id": "L5"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L29",
+      "from-id": "L28"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L50",
+      "from-id": "L44"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L51",
+      "from-id": "L26"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "LX4",
+      "from-id": "L23"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L51",
+      "from-id": "L47"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L39",
+      "from-id": "L38"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "LX5",
+      "from-id": "L31"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L46",
+      "from-id": "L18"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L16",
+      "from-id": "L15"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L35",
+      "from-id": "L34"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L8",
+      "from-id": "L7"
+    }
+  ],
+  "mur": 10,
+  "map": [
+    {
+      "area": "PUBLIC",
+      "node-id": "L23",
+      "coords": {
+        "x": 5.75,
+        "y": 4.5
+      },
+      "connected-to": [
+        "L20",
+        "L24",
+        "L19",
+        "LX4"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L63",
+      "coords": {
+        "x": 11.95,
+        "y": 6.08
+      },
+      "connected-to": [
+        "L61",
+        "L64",
+        "L58"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L6",
+      "coords": {
+        "x": 5.17,
+        "y": 1.65
+      },
+      "connected-to": [
+        "LX1",
+        "L7"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L30",
+      "coords": {
+        "x": 6.39,
+        "y": 6.51
+      },
+      "connected-to": [
+        "L29"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L47",
+      "coords": {
+        "x": 10.9,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L51",
+        "L46",
+        "L52",
+        "L48"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L19",
+      "coords": {
+        "x": 5.49,
+        "y": 3.87
+      },
+      "connected-to": [
+        "L23",
+        "L15",
+        "L20"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L54",
+      "coords": {
+        "x": 12.62,
+        "y": 3.63
+      },
+      "connected-to": [
+        "L58",
+        "L50",
+        "L52"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "LX5",
+      "coords": {
+        "x": 7.14,
+        "y": 5.33
+      },
+      "connected-to": [
+        "L31",
+        "L26",
+        "L61"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "LX1",
+      "coords": {
+        "x": 5.27,
+        "y": 2.48
+      },
+      "connected-to": [
+        "L6",
+        "L14"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L62",
+      "coords": {
+        "x": 11.39,
+        "y": 6.51
+      },
+      "connected-to": [
+        "L32",
+        "L61"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L15",
+      "coords": {
+        "x": 5.9,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L16",
+        "L20",
+        "L19",
+        "L14"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L22",
+      "coords": {
+        "x": 7.62,
+        "y": 3.63
+      },
+      "connected-to": [
+        "L18",
+        "L26"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L39",
+      "coords": {
+        "x": 10.75,
+        "y": 1.71
+      },
+      "connected-to": [
+        "L34",
+        "L40",
+        "L38"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L12",
+      "coords": {
+        "x": 7.88,
+        "y": 1.81
+      },
+      "connected-to": [
+        "L38",
+        "L11",
+        "LX3",
+        "L10"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L26",
+      "coords": {
+        "x": 7.46,
+        "y": 4.17
+      },
+      "connected-to": [
+        "L25",
+        "L51",
+        "L55",
+        "LX5",
+        "L22"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L27",
+      "coords": {
+        "x": 6.68,
+        "y": 4.66
+      },
+      "connected-to": [
+        "L25",
+        "L24",
+        "L28"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L14",
+      "coords": {
+        "x": 5.37,
+        "y": 3.28
+      },
+      "connected-to": [
+        "LX1",
+        "L15"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L2",
+      "coords": {
+        "x": 5.8,
+        "y": 1.08
+      },
+      "connected-to": [
+        "L7",
+        "L1",
+        "L3"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L31",
+      "coords": {
+        "x": 6.95,
+        "y": 6.08
+      },
+      "connected-to": [
+        "L32",
+        "L29",
+        "LX5"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L3",
+      "coords": {
+        "x": 6.39,
+        "y": 0.94
+      },
+      "connected-to": [
+        "L2",
+        "L4"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L37",
+      "coords": {
+        "x": 12.72,
+        "y": 0.57
+      },
+      "connected-to": [
+        "L36",
+        "L42"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L51",
+      "coords": {
+        "x": 10.49,
+        "y": 3.87
+      },
+      "connected-to": [
+        "L55",
+        "L47",
+        "L52",
+        "L26"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L10",
+      "coords": {
+        "x": 7.78,
+        "y": 1.19
+      },
+      "connected-to": [
+        "L5",
+        "L12"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L13",
+      "coords": {
+        "x": 7.12,
+        "y": 2.48
+      },
+      "connected-to": [
+        "L11",
+        "L17"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "LX4",
+      "coords": {
+        "x": 5.78,
+        "y": 5.65
+      },
+      "connected-to": [
+        "L29",
+        "L23"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L16",
+      "coords": {
+        "x": 6.53,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L15",
+        "L17",
+        "LX2"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L50",
+      "coords": {
+        "x": 12.73,
+        "y": 3.27
+      },
+      "connected-to": [
+        "L44",
+        "L49",
+        "L54"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L5",
+      "coords": {
+        "x": 7.72,
+        "y": 0.57
+      },
+      "connected-to": [
+        "L4",
+        "L10"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "LX3",
+      "coords": {
+        "x": 7.82,
+        "y": 2.48
+      },
+      "connected-to": [
+        "L18",
+        "L12"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L49",
+      "coords": {
+        "x": 12.12,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L53",
+        "L48",
+        "L45",
+        "L50"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "LX2",
+      "coords": {
+        "x": 6.45,
+        "y": 2.48
+      },
+      "connected-to": [
+        "L8",
+        "L16"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L41",
+      "coords": {
+        "x": 12.15,
+        "y": 1.26
+      },
+      "connected-to": [
+        "L43",
+        "L36",
+        "L46"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L17",
+      "coords": {
+        "x": 7.12,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L16",
+        "L18",
+        "L21",
+        "L13"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L32",
+      "coords": {
+        "x": 7.46,
+        "y": 6.27
+      },
+      "connected-to": [
+        "L31",
+        "L62"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L35",
+      "coords": {
+        "x": 11.39,
+        "y": 0.94
+      },
+      "connected-to": [
+        "L34",
+        "L36"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L43",
+      "coords": {
+        "x": 12.16,
+        "y": 1.81
+      },
+      "connected-to": [
+        "L45",
+        "L41",
+        "L40",
+        "L44"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L9",
+      "coords": {
+        "x": 7.15,
+        "y": 1.26
+      },
+      "connected-to": [
+        "L4",
+        "L11"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L48",
+      "coords": {
+        "x": 11.53,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L49",
+        "L40",
+        "L47"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L7",
+      "coords": {
+        "x": 5.75,
+        "y": 1.71
+      },
+      "connected-to": [
+        "L2",
+        "L6",
+        "L8"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L33",
+      "coords": {
+        "x": 10.47,
+        "y": 1.19
+      },
+      "connected-to": [
+        "L34"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L1",
+      "coords": {
+        "x": 5.47,
+        "y": 1.19
+      },
+      "connected-to": [
+        "L2"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L52",
+      "coords": {
+        "x": 10.85,
+        "y": 4.07
+      },
+      "connected-to": [
+        "L51",
+        "L55",
+        "L54",
+        "L47"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L28",
+      "coords": {
+        "x": 6.43,
+        "y": 5.44
+      },
+      "connected-to": [
+        "L27",
+        "L29"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L8",
+      "coords": {
+        "x": 6.33,
+        "y": 1.75
+      },
+      "connected-to": [
+        "LX2",
+        "L7",
+        "L11"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L4",
+      "coords": {
+        "x": 7.18,
+        "y": 0.72
+      },
+      "connected-to": [
+        "L9",
+        "L3",
+        "L5"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L44",
+      "coords": {
+        "x": 12.88,
+        "y": 1.81
+      },
+      "connected-to": [
+        "L42",
+        "L50",
+        "L43"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L57",
+      "coords": {
+        "x": 11.85,
+        "y": 4.27
+      },
+      "connected-to": [
+        "L53",
+        "L58",
+        "L59"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L34",
+      "coords": {
+        "x": 10.8,
+        "y": 1.08
+      },
+      "connected-to": [
+        "L39",
+        "L33",
+        "L35"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L24",
+      "coords": {
+        "x": 6.15,
+        "y": 4.6
+      },
+      "connected-to": [
+        "L27",
+        "L23"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L36",
+      "coords": {
+        "x": 12.18,
+        "y": 0.72
+      },
+      "connected-to": [
+        "L37",
+        "L35",
+        "L41"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L11",
+      "coords": {
+        "x": 7.16,
+        "y": 1.81
+      },
+      "connected-to": [
+        "L9",
+        "L13",
+        "L12",
+        "L8"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L18",
+      "coords": {
+        "x": 7.73,
+        "y": 3.27
+      },
+      "connected-to": [
+        "LX3",
+        "L46",
+        "L22",
+        "L17"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L56",
+      "coords": {
+        "x": 11.15,
+        "y": 4.6
+      },
+      "connected-to": [
+        "L55",
+        "L59"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L55",
+      "coords": {
+        "x": 10.75,
+        "y": 4.5
+      },
+      "connected-to": [
+        "L51",
+        "L56",
+        "L52",
+        "L61",
+        "L26"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L40",
+      "coords": {
+        "x": 11.33,
+        "y": 1.75
+      },
+      "connected-to": [
+        "L39",
+        "L48",
+        "L43"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L20",
+      "coords": {
+        "x": 5.85,
+        "y": 4.07
+      },
+      "connected-to": [
+        "L15",
+        "L23",
+        "L19"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L29",
+      "coords": {
+        "x": 6.41,
+        "y": 5.9
+      },
+      "connected-to": [
+        "LX4",
+        "L31",
+        "L28",
+        "L30"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L59",
+      "coords": {
+        "x": 11.68,
+        "y": 4.66
+      },
+      "connected-to": [
+        "L56",
+        "L60",
+        "L57"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L64",
+      "coords": {
+        "x": 12.46,
+        "y": 6.27
+      },
+      "connected-to": [
+        "L63"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L45",
+      "coords": {
+        "x": 12.12,
+        "y": 2.48
+      },
+      "connected-to": [
+        "L49",
+        "L43"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L21",
+      "coords": {
+        "x": 6.88,
+        "y": 3.83
+      },
+      "connected-to": [
+        "L25",
+        "L17"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L38",
+      "coords": {
+        "x": 10.17,
+        "y": 1.65
+      },
+      "connected-to": [
+        "L12",
+        "L46",
+        "L39"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L53",
+      "coords": {
+        "x": 11.88,
+        "y": 3.83
+      },
+      "connected-to": [
+        "L49",
+        "L57"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L61",
+      "coords": {
+        "x": 11.41,
+        "y": 5.9
+      },
+      "connected-to": [
+        "L63",
+        "L60",
+        "L55",
+        "LX5",
+        "L62"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L60",
+      "coords": {
+        "x": 11.43,
+        "y": 5.44
+      },
+      "connected-to": [
+        "L61",
+        "L59"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L25",
+      "coords": {
+        "x": 6.85,
+        "y": 4.27
+      },
+      "connected-to": [
+        "L21",
+        "L27",
+        "L26"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L58",
+      "coords": {
+        "x": 12.46,
+        "y": 4.17
+      },
+      "connected-to": [
+        "L54",
+        "L57",
+        "L63"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L46",
+      "coords": {
+        "x": 10.37,
+        "y": 3.28
+      },
+      "connected-to": [
+        "L18",
+        "L47",
+        "L38",
+        "L41"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L42",
+      "coords": {
+        "x": 12.78,
+        "y": 1.19
+      },
+      "connected-to": [
+        "L44",
+        "L37"
+      ]
+    }
+  ]
+}

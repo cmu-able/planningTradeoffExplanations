@@ -1,0 +1,122 @@
+{
+	"obstacles": [
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L2",
+      "from-id": "L3"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L3",
+      "from-id": "L2"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L5",
+      "from-id": "L6"
+    },
+    {
+      "occlusion": "PARTIALLY_OCCLUDED",
+      "to-id": "L6",
+      "from-id": "L5"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L4",
+      "from-id": "L3"
+    },
+    
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L3",
+      "from-id": "L4"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L4",
+      "from-id": "L5"
+    },
+    {
+      "occlusion": "OCCLUDED",
+      "to-id": "L5",
+      "from-id": "L4"
+    }
+  ],
+  "mur": 10,
+  "map": [
+    {
+      "area": "PUBLIC",
+      "node-id": "L1",
+      "coords": {
+        "x": 10.0,
+        "y": 10.0
+      },
+      "connected-to": [
+        "L2",
+        "L4"
+      ]
+    },
+    {
+      "area": "PRIVATE",
+      "node-id": "L2",
+      "coords": {
+        "x": 20.0,
+        "y": 10.0
+      },
+      "connected-to": [
+        "L1",
+        "L3"
+      ]
+    },
+    {
+      "area": "SEMI_PRIVATE",
+      "node-id": "L3",
+      "coords": {
+        "x": 30.0,
+        "y": 10.0
+      },
+      "connected-to": [
+        "L2",
+        "L4",
+        "L6"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L4",
+      "coords": {
+        "x": 20.0,
+        "y": 15.0
+      },
+      "connected-to": [
+        "L1",
+        "L3",
+        "L5"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L5",
+      "coords": {
+        "x": 30.0,
+        "y": 15.0
+      },
+      "connected-to": [
+        "L6",
+        "L4"
+      ]
+    },
+    {
+      "area": "PUBLIC",
+      "node-id": "L6",
+      "coords": {
+        "x": 40.0,
+        "y": 20.0
+      },
+      "connected-to": [
+        "L5",
+        "L3"
+      ]
+    }
+  ]
+}
